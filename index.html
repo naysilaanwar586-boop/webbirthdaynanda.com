@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selamat Ulang Tahun Nanda Maulana! 🎉🎂</title>
+  <style>
+    :root {
+      --primary-blue: #7ba4cf;
+      --soft-blue: #e8f1fc;
+      --accent-blue: #3b7bb0;
+      --card-bg: rgba(255, 255, 255, 0.95);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #e8f1fc 0%, #cfe2f9 100%);
+      color: #4a4a4a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    /* Animasi Elemen Melayang di Background */
+    .floating-bg {
+      position: fixed;
+      top: -10vh;
+      font-size: 1.5rem;
+      animation: fall linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 550px;
+      width: 100%;
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 25px rgba(59, 123, 176, 0.15);
+      text-align: center;
+      backdrop-filter: blur(5px);
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Sistem Slide */
+    .slide {
+      display: none;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      color: var(--accent-blue);
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+
+    /* Kotak Ucapan dengan Efek Ketik */
+    p.quote-long {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #4a4a4a;
+      text-align: justify;
+      background: #f0f6ff;
+      padding: 18px;
+      border-radius: 15px;
+      border-left: 5px solid var(--primary-blue);
+      box-shadow: 0 4px 12px rgba(123, 164, 207, 0.15);
+      min-height: 180px;
+      position: relative;
+    }
+
+    /* Cursor Animasi Ketik */
+    .typing-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background-color: var(--accent-blue);
+      vertical-align: middle;
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Pemutar Musik */
+    .music-player {
+      background: var(--soft-blue);
+      border: 1px solid #b6d3f2;
+      border-radius: 15px;
+      padding: 10px 12px;
+      margin-bottom: 15px;
+    }
+
+    .song-title {
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: var(--accent-blue);
+      margin-bottom: 5px;
+    }
+
+    audio {
+      width: 100%;
+      height: 30px;
+    }
+
+    /* Galeri Foto */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 3px solid white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Fitur Lilin Ulang Tahun */
+    .cake-box {
+      background: #f0f6ff;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      border: 1px dashed var(--primary-blue);
+    }
+
+    .candle {
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: transform 0.3s;
+      display: inline-block;
+    }
+
+    .flame {
+      font-size: 1.5rem;
+      display: block;
+      animation: flicker 0.5s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0.7; transform: scale(0.9); }
+    }
+
+    .cake {
+      font-size: 3.5rem;
+      margin-top: -10px;
+    }
+
+    .wish-text {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 8px;
+    }
+
+    /* Navigasi Tombol */
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #d5e6fb;
+    }
+
+    .btn-blue {
+      background: var(--primary-blue);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(123, 164, 207, 0.3);
+    }
+
+    .btn-blue:hover {
+      background: var(--accent-blue);
+      transform: translateY(-2deg);
+    }
+
+    .btn-blue:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .slide-indicator {
+      font-size: 0.85rem;
+      color: var(--accent-blue);
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body onclick="playMusicOnFirstClick()">
+
+  <div class="container">
+    
+    <!-- Pemutar Musik -->
+    <div class="music-player">
+      <div class="song-title">🎵 Musik Spesial Ulang Tahun</div>
+      <!-- Atribut muted & autoplay diatur agar otomatis jalan, atau dipicu klik pertama -->
+      <audio id="bgMusic" controls loop autoplay>
+        <source src="lagu.mp3" type="audio/mpeg">
+        Browser kamu tidak mendukung pemutar audio.
+      </audio>
+    </div>
+
+    <!-- SLIDE 1: Pembuka & Foto -->
+    <div class="slide active" id="slide1">
+      <h1>Halo Nanda Maulana! 🎉</h1>
+      <p style="margin-bottom: 15px; font-size: 0.95rem;">Selamat datang di halaman spesial buat kamu hari ini. Yuk geser ke slide berikutnya! ✨</p>
+      
+      <div class="gallery">
+        <img src="foto1.jpg" alt="Foto Nanda 1">
+        <img src="foto2.jpg" alt="Foto Nanda 2">
+      </div>
+    </div>
+
+    <!-- SLIDE 2: Ucapan Ulang Tahun Utama (Animasi Ketik) -->
+    <div class="slide" id="slide2">
+      <h1>Doa & Ucapan Spesial 💙</h1>
+      <p class="quote-long">
+        <span id="typedText"></span><span class="typing-cursor" id="cursor"></span>
+      </p>
+      <div style="font-size: 2.2rem; margin-top: 10px;">✨ 💙 🥳 💙 ✨</div>
+    </div>
+
+    <!-- SLIDE 3: Slide Tambahan (Harapan & Pesan Hangat) -->
+    <div class="slide" id="slide3">
+      <h1>Pesan & Harapan Lainnya 🌟</h1>
+      <p class="quote-long">
+        <span id="typedText2"></span><span class="typing-cursor" id="cursor2"></span>
+      </p>
+      <div style="font-size: 2.2rem; margin-top: 10px;">💫 💙 🥰 💙 💫</div>
+    </div>
+
+    <!-- SLIDE 4: Fitur Tiup Lilin Interaktif -->
+    <div class="slide" id="slide4">
+      <h1>Tiup Lilinnya Yuk! 🕯️</h1>
+      <div class="cake-box">
+        <div id="candleContainer">
+          <span class="flame" id="flameIcon">🔥</span>
+          <span class="candle">🕯️</span>
+        </div>
+        <div class="cake">🎂</div>
+        <div class="wish-text" id="wishStatus">Klik tombol di bawah untuk meniup lilin dan membuat permohonan!</div>
+      </div>
+      <button class="btn-blue" onclick="blowCandle()" id="blowBtn">Tiup Lilin 🌬️</button>
+    </div>
+
+    <!-- SLIDE 5: Penutup -->
+    <div class="slide" id="slide5">
+      <h1>Happy Birthday Sekali Lagi! 🎉</h1>
+      <p style="font-size: 1.05rem; margin-top: 25px; line-height: 1.6;">
+        Semoga hari ini dan tahun-tahun kedepan membawa kebahagiaan yang luar biasa buat Nanda.<br><br>
+        <b>We are always proud of you! 🌟</b>
+      </p>
+      <div style="font-size: 3.5rem; margin-top: 20px;">🎁 🎈 🎊</div>
+    </div>
+
+    <!-- Tombol Navigasi Slide -->
+    <div class="nav-buttons">
+      <button class="btn-blue" id="prevBtn" onclick="changeSlide(-1)" disabled>Sebelumnya</button>
+      <span class="slide-indicator" id="slideNum">1 / 5</span>
+      <button class="btn-blue" id="nextBtn" onclick="changeSlide(1)">Selanjutnya</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Fungsi agar musik langsung mutar otomatis begitu ada interaksi klik pertama di layar (Kebijakan browser modern)
+    let hasPlayed = false;
+    function playMusicOnFirstClick() {
+      const music = document.getElementById("bgMusic");
+      if (!hasPlayed) {
+        music.play().catch(() => {});
+        hasPlayed = true;
+      }
+    }
+
+    // Sistem Navigasi Slide
+    let currentSlide = 1;
+    const totalSlides = 5;
+
+    // Teks Ucapan Slide 2
+    const fullText = "Selamat ulang tahun untuk sepupu tersayang, Nanda Maulana! 🎂✨ Selamat bertambah usia ya. Semoga di umur yang baru ini, Nanda senantiasa diberikan kesehatan, kebahagiaan yang berlimpah, rezeki yang lancar, serta makin sukses dalam segala hal. Semoga semua impian, cita-cita, dan harapan yang selama ini diusahakan bisa segera tercapai satu per satu. Tetap jadi pribadi yang baik, hangat, dan ceria ya! 🎉💙";
+    
+    // Teks Ucapan Slide 3 (Tambahan)
+    const fullText2 = "Terima kasih sudah jadi sepupu yang asyik, seru, dan selalu membawa energi positif di keluarga kita. Apapun rintangan kedepannya, tetap semangat ya jalani hari-hari. Kalau lagi butuh teman cerita atau bantuan, pintu selalu terbuka lebar. Enjoy your special day to the fullest, Nanda! 🥳 💙 ✨";
+
+    let isTypingStarted = false;
+    let isTypingStarted2 = false;
+
+    function changeSlide(direction) {
+      document.getElementById(`slide${currentSlide}`).classList.remove('active');
+      currentSlide += direction;
+      document.getElementById(`slide${currentSlide}`).classList.add('active');
+
+      // Jalankan Animasi Ketik untuk Slide 2
+      if (currentSlide === 2 && !isTypingStarted) {
+        typeWriter('typedText', fullText, 'cursor', () => { isTypingStarted = true; });
+      }
+
+      // Jalankan Animasi Ketik untuk Slide 3 (Slide Tambahan)
+      if (currentSlide === 3 && !isTypingStarted2) {
+        typeWriter('typedText2', fullText2, 'cursor2', () => { isTypingStarted2 = true; });
+      }
+
+      // Update Tampilan Tombol & Indikator
+      document.getElementById('slideNum').innerText = `${currentSlide} / ${totalSlides}`;
+      document.getElementById('prevBtn').disabled = (currentSlide === 1);
+      document.getElementById('nextBtn').disabled = (currentSlide === totalSlides);
+    }
+
+    // Fungsi Universal Animasi Teks Ketik
+    function typeWriter(elementId, text, cursorId, callback) {
+      let charIndex = 0;
+      function typing() {
+        if (charIndex < text.length) {
+          document.getElementById(elementId).innerHTML += text.charAt(charIndex);
+          charIndex++;
+          setTimeout(typing, 30);
+        } else {
+          document.getElementById(cursorId).style.display = "none";
+          if (callback) callback();
+        }
+      }
+      typing();
+    }
+
+    // Fungsi Interaktif Tiup Lilin
+    function blowCandle() {
+      const flame = document.getElementById("flameIcon");
+      const status = document.getElementById("wishStatus");
+      const btn = document.getElementById("blowBtn");
+
+      flame.style.display = "none";
+      status.innerHTML = "<b>Yey! Lilin berhasil ditiup! 🥳</b><br>Semoga semua doa dan harapan Nanda terkabul ya! ✨";
+      btn.innerText = "Lilin Padam 🌟";
+      btn.disabled = true;
+      btn.style.background = "#ddd";
+    }
+
+    // Efek Bintang & Balon Biru Terbang di Background
+    function createFloatingElements() {
+      const symbols = ["🎈", "🎂", "🎁", "✨", "💙", "🎉"];
+      const el = document.createElement("div");
+      el.classList.add("floating-bg");
+      el.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.animationDuration = Math.random() * 3 + 3 + "s";
+      el.style.fontSize = Math.random() * 10 + 18 + "px";
+      document.body.appendChild(el);
+
+      setTimeout(() => {
+        el.remove();
+      }, 6000);
+    }
+    setInterval(createFloatingElements, 350);
+  </script>
+</body>
+</html>
